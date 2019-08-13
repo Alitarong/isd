@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.isd.dao.TransactionMapper">
+
+    <!-- 用户点击支付，生成商户订单 -->
+    <insert id="save" parameterType="org.isd.pojo.Transaction">
+        insert into transaction(userid,v_id,name,cover,price,orderid,channel,tranid,status,ctime)
+        values(#{userid},#{v_id},#{name},#{cover},#{price},#{orderid},#{channel},#{tranid},#{status},#{ctime})
+    </insert>
+
+    <update id="update">
+        update transaction
+        set userid = #{userid},
+        <if test="v_id!=null">v_id = #{v_id},</if>
+        <if test="name!=null">name = #{name},</if>
+        <if test="cover!=null">cover = #{cover},</if>
+        <if test="price!=null">price = #{price},</if>
+        <if test="orderid!=null">orderid = #{orderid},</if>
+        <if test="channel!=null">channel = #{channel},</if>
+        <if test="tranid!=null">tranid = #{tranid},</if>
+        <if test="status!=null">status = #{status},</if>
+        <if test="ctime!=null">ctime = #{ctime}</if>
+        <if test="utime!=null">utime = #{utime}</if>
+        where id = #{id}
+    </update>
+
+    <delete id="delete" parameterType="org.isd.pojo.Transaction">
+        delete from transaction where id=#{id}
+    </delete>
+
+    <select id="findByOrderid" resultType="org.isd.pojo.Transaction" parameterType="java.lang.String">
+        select * from transaction where orderid=#{orderid} limit 0, 1
+    </select>
+
+    <!-- 用户点击支付，生成商户订单 -->
+    <insert id="insertTran">
+        INSERT INTO TRANSACTION() VALUE();
+    </insert>
+
+    <!-- 通过商户订单号查询库中信息 selectByTranID -->
+    <delete id="delete" parameterType="org.isd.pojo.Transaction">
+        delete from transaction where orderid=#{outTradeNo}
+    </delete>
+
+    <!--根据商户订单号更新订单 updateByTranId-->
+    <update id="update">
+        update transaction
+        set userid = #{userid},
+        <if test="v_id!=null">v_id = #{v_id},</if>
+        <if test="name!=null">name = #{name},</if>
+        <if test="cover!=null">cover = #{cover},</if>
+        <if test="price!=null">price = #{price},</if>
+        <if test="orderid!=null">orderid = #{orderid},</if>
+        <if test="channel!=null">channel = #{channel},</if>
+        <if test="tranid!=null">tranid = #{tranid},</if>
+        <if test="status!=null">status = #{status},</if>
+        <if test="ctime!=null">ctime = #{ctime}</if>
+        <if test="utime!=null">utime = #{utime}</if>
+        where tranid = #{transaction1.orderid}
+    </update>
+
+</mapper>

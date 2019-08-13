@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.isd.oxygenshow.dao.SubscribeMapper">
+<!--    添加购买记录-->
+    <insert id="save" parameterType="com.isd.oxygenshow.entity.Subscribe">
+        insert ignore into subscribe(userid,v_id,name,cover,played,ctime,utime,status)
+        values(#{userid},#{v_id},#{name},#{cover},#{played},#{ctime},#{utime},#{status})
+    </insert>
+<!--    更新购买记录-->
+    <update id="update" parameterType="com.isd.oxygenshow.entity.Subscribe">
+        update subscribe
+        set userid = #{userid},
+        <if test="v_id!=null">v_id = #{v_id},</if>
+        <if test="name!=null">name = #{name},</if>
+        <if test="cover!=null">cover = #{cover},</if>
+        <if test="played!=null">played = #{played},</if>
+        <if test="ctime!=null">ctime = #{ctime},</if>
+        <if test="utime!=null">utime = #{utime},</if>
+        <if test="status!=null">status = #{status}</if>
+        where id = #{id}
+    </update>
+<!--    根据用户id 视频v_id 提取对象-->
+    <select id="findByUserVid" resultType="com.isd.oxygenshow.entity.Subscribe">
+    select * from subscribe where userid=#{userid} and v_id=#{v_id} limit 0,1
+    </select>
+<!--   通过用户id购买的视频分页查询-->
+    <select id="listPageByUid" >
+        select * from subscribe where userid =#{userid} order by v_id desc
+    </select>
+<!--    显示收藏总条数-->
+    <select id="total" resultType="java.lang.Integer">
+        select count(*) from subscribe where userid=#{userid}
+    </select>
+</mapper>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.isd.oxygenshow.dao.VideoMapper">
+<!--    查看所有图片-->
+    <select id="listAll" resultType="com.isd.oxygenshow.entity.Video">
+        select * from video
+    </select>
+<!--    存取数据-->
+    <select id="insertVideo">
+        insert ignore into video (id,name,cover,text)
+         values(#{id},#{name},#{cover},#{text})
+    </select>
+<!--    通过id进行查看视频详情-->
+    <select id="selectById" parameterType="java.lang.Integer" resultType="com.isd.oxygenshow.entity.Video">
+        select * from video where id=#{id};
+    </select>
+</mapper>
