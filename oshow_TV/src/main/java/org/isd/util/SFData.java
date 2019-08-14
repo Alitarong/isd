@@ -1,6 +1,7 @@
 package org.isd.util;
 
 public class SFData {
+
 	/** 获取支付链接请求 **/
 	public static final String WXPAYURL						=	"https://api.mch.weixin.qq.com/pay/unifiedorder";
 	
@@ -27,4 +28,5 @@ public class SFData {
 
 	/** 加密解密 密匙 **/
 	public static final String KEY				    		=	"wCjBiVdDzlpG0FP3DLx2eNWWQduNsLkp";
+
 }

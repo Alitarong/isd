@@ -7,15 +7,25 @@ import java.util.Date;
  * 购买
  */
 public class Subscribe implements Serializable {
+
     private Integer id;
+
     private String userid;
+
     private Integer v_id;
+
     private String name;
+
     private String text;
+
     private String cover;
+
     private String played;
+
     private Date ctime;
+
     private Date utime;
+
     private Integer  status;
 
     public Integer getId() {

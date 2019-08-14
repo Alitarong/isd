@@ -3,6 +3,9 @@ package org.isd.service;
 
 import org.isd.pojo.Transaction;
 
+/**
+ * 订单业务
+ */
 public interface TransactionService {
 
     /**支付接口**/

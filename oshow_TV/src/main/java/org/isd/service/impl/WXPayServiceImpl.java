@@ -8,7 +8,6 @@ import com.sun.xml.internal.messaging.saaj.util.ByteOutputStream;
 import net.sf.json.*;
 import org.isd.dao.TransactionMapper;
 import org.isd.pojo.Transaction;
-import org.isd.pojo.User;
 import org.isd.service.WXPayService;
 import org.isd.util.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +37,7 @@ public class WXPayServiceImpl implements WXPayService {
      */
     @Override
     public JSON getDataMap(String out_trade_no, String total_fee, String body) {
+
         InetAddress localhost = null;
         Map<String, String> responseDataMap = null;
 
@@ -60,6 +60,7 @@ public class WXPayServiceImpl implements WXPayService {
 
 
         try {
+
             //获取服务器 ip
             localhost = InetAddress.getLocalHost();
 
@@ -76,6 +77,7 @@ public class WXPayServiceImpl implements WXPayService {
 
             //新建订单对象并赋值订单数据
             Transaction transaction = new Transaction();
+
             transaction.setStatus(0);
             transaction.setChannel(0);
             transaction.setCtime(new Date());
@@ -100,9 +102,13 @@ public class WXPayServiceImpl implements WXPayService {
             responseDataMap = WXPayUtil.xmlToMap(responseDataXML);
 
         } catch (UnknownHostException e) {
+
             e.printStackTrace();
+
         } catch (Exception e) {
+
             e.printStackTrace();
+
         }
 
         return JSONObject.fromObject(responseDataMap);
@@ -117,11 +123,13 @@ public class WXPayServiceImpl implements WXPayService {
      */
     @Override
     public BufferedImage putQRCode(JSONObject jsonObject) {
+
         //获取 return_code
         String return_code = jsonObject.getString("return_code");
 
         //判断通信是否成功
         if ("SUCCESS".equals(return_code)){
+
             //获取 result_code 业务处理结果
             String result_code = jsonObject.getString("result_code");
 
@@ -157,9 +165,13 @@ public class WXPayServiceImpl implements WXPayService {
                     return bImage;
 
                 } catch (WriterException e) {
+
                     e.printStackTrace();
+
                 } catch (IOException e) {
+
                     e.printStackTrace();
+
                 }
 
 
@@ -172,6 +184,7 @@ public class WXPayServiceImpl implements WXPayService {
         }
 
         return null;
+
     }
 
     /**
@@ -182,6 +195,7 @@ public class WXPayServiceImpl implements WXPayService {
      */
     @Override
     public boolean getCallBack(InputStream inputStream) {
+
         //扫码结果
         boolean result = false;
 
@@ -239,11 +253,17 @@ public class WXPayServiceImpl implements WXPayService {
             }
 
         } catch (IOException e) {
+
             e.printStackTrace();
+
         } catch (Exception e) {
+
             e.printStackTrace();
+
         }
+
         return result;
+
     }
 
 }

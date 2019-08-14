@@ -31,15 +31,24 @@ public class UserServiceImpl implements UserService {
     public User getUser() {
 
         String userid = null;
+
         if(C.getCookie(C.COOKIE_DEVICE)==null) {
+
             userid = C.randomString(30);
+
             C.setCookie(C.COOKIE_DEVICE, userid, 2*365*24*3600);
+
         }else {
+
             userid = C.getCookie(C.COOKIE_DEVICE).toString();
+
         }
+
         User user = new User();
         user.setId(userid);
+
         return user;
+
     }
 
     /**
@@ -84,8 +93,10 @@ public class UserServiceImpl implements UserService {
         user = this.retrieve(content);
 
         if (user != null) {
+
             user = this.addUser(user);
             user = this.detail(user);
+
         }
 
         return user;
@@ -104,11 +115,16 @@ public class UserServiceImpl implements UserService {
 
         //判断用户是否存在
         if (existed == null) {
+
             user.setCreate_time(new Date());
             user.setModify_time(new Date());//更改时间
+
             userMapper.insert(user);
+
             return user;
+
         } else {
+
             existed.setAccess_token(user.getAccess_token());
             existed.setDeviceid(user.getDeviceid());
             existed.setRefresh_token(user.getRefresh_token());
@@ -134,9 +150,11 @@ public class UserServiceImpl implements UserService {
 
         String url = "https://api.weixin.qq.com/sns/userinfo?access_token=" + user.getAccess_token() + "&openid=" + user.getId();
         String content = C.getContentFromURL(url);
+
         JSONObject json = JSONObject.fromObject(content);
 
         if (!json.containsKey("errcode")) {
+
             user.setNickname(json.getString("nickname"));
             user.setAvatar(json.getString("headimgurl"));
             user.setLocation(json.getString("province") + "-" +
@@ -163,17 +181,23 @@ public class UserServiceImpl implements UserService {
 
         //判断是否含有关键字“errcode”
         if (!json.containsKey("errcode")) {
+
             user = new User();
+
             user.setAccess_token(json.getString("access_token"));
             System.out.println("access_token="+json.getString("access_token"));
+
             user.setRefresh_token(json.getString("refresh_token"));
             System.out.println("refresh_token="+json.getString("refresh_token"));
+
             int expire=json.getInt("expires_in");
             Date access_expire=new Date(new Date().getTime()+expire*1000l);
             Date refresh_expire=new Date(new Date().getTime()+30 * 24 * 3600l * 1000);
+
             user.setAccess_expire(access_expire);
             user.setRefresh_expire(refresh_expire);
             user.setId(json.getString("openid"));
+
         }
 
         return user;
@@ -246,14 +270,20 @@ public class UserServiceImpl implements UserService {
     public void logOut() {
 
         this.checkLogin();
+
         User user = (User) C.getSession(C.SESSION_USER);
 
         if (user != null) {
+
             user = userMapper.selectById(user.getId());
+
             user.setRefresh_token(null);
             user.setRefresh_expire(null);
+
             userMapper.update(user);
+
             C.removeSession(C.SESSION_USER);
+
         }
 
     }
@@ -266,7 +296,9 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public User selectById(String uid) {
+
         return userMapper.selectById(uid);
+
     }
 
 }

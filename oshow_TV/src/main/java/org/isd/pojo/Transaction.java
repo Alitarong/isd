@@ -3,18 +3,33 @@ package org.isd.pojo;
 import java.io.Serializable;
 import java.util.Date;
 
+/**
+ * 订单
+ */
 public class Transaction implements Serializable {
+
     private Integer id;
+
     private String userid;
+
     private Integer v_id;
+
     private String name;
+
     private String cover;
+
     private Integer price;
+
     private String orderid;
+
     private Integer channel;
+
     private String tranid;
+
     private Integer status;
+
     private Date ctime;
+
     private Date utime;
 
     public Integer getId() {

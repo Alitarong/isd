@@ -2,6 +2,10 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--
+    订单业务
+-->
 <mapper namespace="org.isd.dao.TransactionMapper">
 
     <!-- 用户点击支付，生成商户订单 -->
@@ -10,6 +14,7 @@
         values(#{userid},#{v_id},#{name},#{cover},#{price},#{orderid},#{channel},#{tranid},#{status},#{ctime})
     </insert>
 
+    <!-- 修改订单 -->
     <update id="update">
         update transaction
         set userid = #{userid},

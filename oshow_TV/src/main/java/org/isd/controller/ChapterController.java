@@ -1,16 +1,16 @@
 package org.isd.controller;
 
-import com.isd.oxygenshow.entity.Chapter;
-import com.isd.oxygenshow.entity.User;
-import com.isd.oxygenshow.entity.Video;
-import com.isd.oxygenshow.service.ChapterService;
-import com.isd.oxygenshow.service.SubscribeService;
-import com.isd.oxygenshow.service.UserService;
-import com.isd.oxygenshow.service.VideoService;
-import com.isd.oxygenshow.util.C;
 import net.sf.json.JSON;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
+import org.isd.pojo.Chapter;
+import org.isd.pojo.User;
+import org.isd.pojo.Video;
+import org.isd.service.ChapterService;
+import org.isd.service.SubscribeService;
+import org.isd.service.UserService;
+import org.isd.service.VideoService;
+import org.isd.util.C;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,8 +31,8 @@ public class ChapterController {
     @RequestMapping(value = "/getChapterOfVideo")
     @ResponseBody
     public JSON getChapterOfVideo(@RequestParam(name="v_id",defaultValue = "1")Integer v_id,@RequestParam(name="t_id",defaultValue = "1")Integer t_id, ModelMap map){
-        Video video=videoService.getById(v_id);
-        List<Chapter>list=chapterService.getChapterOfVideo(v_id,t_id);
+        Video video = videoService.getById(v_id);
+        List<Chapter> list = chapterService.getChapterOfVideo(v_id,t_id);
         map.put("chapters",list);
         map.put("text",video.getText());
         return JSONObject.fromObject(map);

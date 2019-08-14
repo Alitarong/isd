@@ -1,43 +1,29 @@
 package org.isd.util;
 
-import net.sf.json.JSONArray;
-import net.sf.json.JSONObject;
+import net.sf.json.*;
 import net.sf.json.JsonConfig;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.http.HttpEntity;
 import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.methods.CloseableHttpResponse;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.entity.ContentType;
-import org.apache.http.entity.StringEntity;
-import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.HttpClients;
+import org.apache.http.client.methods.*;
+import org.apache.http.entity.*;
+import org.apache.http.impl.client.*;
 import org.apache.http.message.BasicHeader;
 import org.apache.http.util.EntityUtils;
 import org.springframework.web.context.ContextLoader;
-import org.springframework.web.context.request.RequestContextHolder;
-import org.springframework.web.context.request.ServletRequestAttributes;
+import org.springframework.web.context.request.*;
 
-import javax.servlet.ServletContext;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import javax.servlet.*;
+import javax.servlet.http.*;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
-import java.net.URLDecoder;
-import java.net.URLEncoder;
+import java.net.*;
 import java.nio.charset.Charset;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
  * create by Alitarong from youshu
- *
- * @author Administrator
  */
 public class C {
 

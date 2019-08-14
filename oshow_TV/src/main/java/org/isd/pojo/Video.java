@@ -4,11 +4,17 @@ package org.isd.pojo;
  * 音频
  */
 public class Video {
+
     private Integer id;
+
     private String name;
+
     private String cover;
+
     private String text;
+
     private Integer price;
+
     public Integer getId() {
         return id;
     }
