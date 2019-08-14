@@ -4,15 +4,10 @@ package org.isd.pojo;
  * 小节
  */
 public class Chapter {
-
     private Integer id;
-
     private String name;
-
     private Integer v_id;
-
     private String url;
-
     private Integer serno;
 
     public Integer getId() {

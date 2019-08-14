@@ -2,18 +2,13 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<!--
-    分节视频
--->
-<mapper namespace="org.isd.dao.ChapterMapper">
-
-    <!--    通过V_id t_id 进行 小节、完整版、分解版-->
-    <select id="selectChapterOfVideo" resultType="org.isd.pojo.Chapter">
+<mapper namespace="com.isd.oxygenshow.dao.ChapterMapper">
+<!--    通过V_id t_id 进行 小节、完整版、分解版-->
+    <select id="selectChapterOfVideo" resultType="com.isd.oxygenshow.entity.Chapter">
         select * from chapter where v_id=#{v_id} and t_id=#{t_id} order by serno asc
     </select>
-
-    <!--    更新-->
-    <update id="update" parameterType="org.isd.pojo.Chapter">
+<!--    更新-->
+    <update id="update" parameterType="com.isd.oxygenshow.entity.Chapter">
         update chapter
         <set>
             <if test="chapter.v_id!= null">
@@ -34,15 +29,12 @@
         </set>
         where id = #{chapter.id,jdbcType=INTEGER}
     </update>
-
-    <!--    通过v_id  serno 获取具体小节视频对应的信息-->
-    <select id="selectOfSerno" resultType="org.isd.pojo.Chapter" parameterType="java.lang.Integer">
+<!--    通过v_id  serno 获取具体小节视频对应的信息-->
+    <select id="selectOfSerno" resultType="com.isd.oxygenshow.entity.Chapter" parameterType="java.lang.Integer">
         select id,name,v_id,url,serno,t_id from chapter where v_id=#{v_id} and serno=#{serno} order by serno asc
     </select>
-
-    <!--    通过id进行查找-->
-    <select id="selectById" resultType="org.isd.pojo.Chapter" parameterType="java.lang.Integer">
+<!--    通过id进行查找-->
+    <select id="selectById" resultType="com.isd.oxygenshow.entity.Chapter" parameterType="java.lang.Integer">
         select id,name,v_id,url,serno,t_id from chapter where id=#{id} order by serno asc
     </select>
-
 </mapper>

@@ -2,13 +2,7 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-
-<!--
-    用户相关功能业务
--->
 <mapper namespace="org.isd.dao.UserMapper">
-
-    <!-- 实体类映射 -->
     <resultMap id="BaseResultMap" type="org.isd.pojo.User">
         <id column="id" jdbcType="VARCHAR" property="id"/>
         <result column="nickname" jdbcType="VARCHAR" property="nickname"/>
@@ -25,28 +19,21 @@
         <result column="refresh_expire" jdbcType="TIMESTAMP" property="refresh_expire"/>
         <result column="lastlogin" jdbcType="TIMESTAMP" property="lastlogin"/>
     </resultMap>
-
-    <!-- user 表字段 -->
     <sql id="Base_Column_List">
         id, nickname, avatar, deviceid, location, member_expire, create_time, modify_time,
         access_token, access_expire, refresh_token, refresh_expire, lastlogin
     </sql>
 
-    <!-- 通过用户 id 查询用户信息 -->
     <select id="selectById" parameterType="java.lang.String" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
         from user
         where id = #{id,jdbcType=VARCHAR}
     </select>
-
-    <!-- 删除用户 -->
     <delete id="delete" parameterType="java.lang.String">
         delete from user
         where id = #{id,jdbcType=VARCHAR}
     </delete>
-
-    <!-- 新增用户 -->
     <insert id="insert" parameterType="org.isd.pojo.User">
         insert into user
         (id, nickname, avatar, accountno, deviceid, location, member_expire,
@@ -57,8 +44,7 @@
         #{create_time},#{modify_time} ,#{access_token} ,#{access_expire} ,#{refresh_token} ,
         #{refresh_expire}, #{lastlogin})
     </insert>
-
-    <!--  更新用户信息 -->
+    <!--  跟新用户信心-->
     <update id="update" parameterType="org.isd.pojo.User">
         update user
         set nickname = #{nickname},
@@ -76,13 +62,11 @@
         <if test="lastlogin!=null">lastlogin = #{lastlogin}</if>
         where id = #{id}
     </update>
-
-    <!-- 根据用户id查找用户信息 -->
+    <!-- 根据用户id查找-->
     <select id="findById" resultMap="BaseResultMap">
         select * from user WHERE id=#{id}
     </select>
-
-    <!-- 根据设备 id 查找用户信息 显示所有-->
+    <!-- 根据设备id查找 显示所有-->
     <select id="findByDeviceId" resultMap="BaseResultMap">
         select * from user where deviceid=#{deviceid} order by modify_time desc limit 0,1
     </select>

@@ -6,35 +6,20 @@ import java.util.Date;
  * 用户表
  */
 public class User {
-
     private String id;
-
     private String nickname;
-
     private String avatar;
-
     private String 	accountno;//账号 数据库里新添加的字段
-
     private String deviceid;
-
     private String location;
-
     private Integer subscribed;
-
     private Date member_expire;
-
     private Date create_time;
-
     private Date modify_time;
-
     private String access_token;
-
     private Date access_expire;
-
     private String refresh_token;
-
     private Date refresh_expire;
-
     private Date lastlogin;
 
 

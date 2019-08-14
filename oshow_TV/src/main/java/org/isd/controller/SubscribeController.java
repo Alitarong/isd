@@ -1,11 +1,11 @@
 package org.isd.controller;
 
+import com.isd.oxygenshow.entity.User;
+import com.isd.oxygenshow.service.SubscribeService;
+import com.isd.oxygenshow.service.UserService;
+import com.isd.oxygenshow.util.C;
 import net.sf.json.JSON;
 import net.sf.json.JSONObject;
-import org.isd.pojo.User;
-import org.isd.service.SubscribeService;
-import org.isd.service.UserService;
-import org.isd.util.C;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;

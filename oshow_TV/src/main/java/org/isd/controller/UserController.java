@@ -5,7 +5,6 @@ import net.sf.json.JSONObject;
 import org.isd.pojo.User;
 import org.isd.service.UserService;
 import org.isd.util.C;
-import org.isd.util.Oxygenshow;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
@@ -28,10 +27,10 @@ public class UserController {
     public String test(ModelMap map){
         String uri= C.API_PREFIX +"/ws/tv/index?apikey=1556466165710&terminaltype=20&version=new";
 
-        String sign= Oxygenshow.getSign(uri,"1556466165710");
-        String url=uri+"&signature="+sign;
-        String result=Oxygenshow.getContentFromURL(url);
-        map.put("message",result);
+//        String sign= Oxygenshow.getSign(uri,"1556466165710");
+//        String url=uri+"&signature="+sign;
+//        String result=Oxygenshow.getContentFromURL(url);
+//        map.put("message",result);
 
         return "global/message";
     }

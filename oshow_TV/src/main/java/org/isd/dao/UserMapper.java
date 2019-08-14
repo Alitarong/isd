@@ -5,7 +5,7 @@ import org.isd.pojo.User;
 import org.springframework.stereotype.Repository;
 
 /**
- * 用户相关功能接口
+ * 用户相关功能接口 -- DAO 层
  */
 @Repository
 public interface UserMapper {

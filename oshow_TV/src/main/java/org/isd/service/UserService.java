@@ -6,7 +6,6 @@ import org.isd.pojo.User;
  * 用户相关功能接口 —— 业务逻辑层
  */
 public interface UserService {
-
     /** 获取用户信息 **/
     User getUser();
 
@@ -21,5 +20,4 @@ public interface UserService {
 
     /** 通过用户id查找 **/
     User selectById(String uid);
-
 }
